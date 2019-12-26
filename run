@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cd src/main/resources/static/
+
+npm run build
+
+cd ../../../../
+
+./gradlew fatJar
+
+java -jar build/libs/WsTomcat-all.jar
+
+
+
+
