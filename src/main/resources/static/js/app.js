@@ -3,8 +3,7 @@ import '../css/style.css'
 const body = document.getElementsByTagName("body")[0]
 const foreign = document.createElement("p")
 const translate = document.createElement("p")
-const audio = document.createElement("audio")
-body.appendChild(audio)
+
 
 
 let socket ;
@@ -48,11 +47,28 @@ const updateGUI = ( msg )=>{
 //	audio.setAttribute("controls", "controls")
 //	audio.setAttribute("autobuffer", "autobuffer")
 //	audio.setAttribute("autoplay", "autoplay")
+
+	var elem = document.getElementById("audio")
+	
+	if (typeof(elem) != 'undefined' && elem != null)
+	{
+ 	   	console.log('audio exist')
+		body.removeChild( elem )
+	}
+	
+	const audio = document.createElement("audio")
+	body.appendChild( audio )
+
 	const url =  "data:audio/wav;base64," + msg.audio 
 	
 	audio.setAttribute("src",  url )
-	audio.load()
-	audio.play()
+	audio.setAttribute("id",  "audio" )
+	
+	audio.addEventListener("canplaythrough", event => {
+  		console.log('play')
+ 		 audio.play();
+	});
+	
 	
 	//var snd = Sound("data:audio/wav;base64," + msg.audio );
 }
