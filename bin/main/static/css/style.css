@@ -1,7 +1,9 @@
 
-body {
-  padding: 20px;
+html, body {
+  margin : 0;	
+  padding: 0;
   background: rgb(238, 238, 236);
+ 
 }
 .button {
   padding: 10px 15px;
@@ -14,6 +16,7 @@ body {
   border: none;
   border-radius: 4px;
   box-shadow: 0 3px #999;
+  margin-left : 10px;
 }
 
 .button:hover {background-color: #3e8e41}
@@ -22,4 +25,71 @@ body {
   background-color: #3e8e41;
   box-shadow: 0 2px #666;
   transform: translateY(2px);
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+.header{
+	flex: 0 0 50px;
+	 background-color:#34495E
+}
+.content-body{
+  flex: 1 1 auto;
+  
+  display: flex;
+  flex-direction: row;
+}
+
+.content-body .content{
+  flex: 1 1 auto;
+  overflow: auto;
+  background: rgb(0, 0, 0);
+}
+.footer{
+  flex: 0 0 50px;
+  background: #34495E;
+}
+
+nav {
+	width: 100%;
+	line-height: 1.4em;
+	
+	margin-top : 8px;
+	margin-bottom : 8px;
+}
+ul {
+	list-style: none;
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	text-align: justify;
+	margin-bottom: -1.4em;
+}
+ul:after {
+	content: "";
+	display: inline-block;
+	width: 100%;
+}
+li{
+	display: inline-block;
+}
+
+.foreign{
+	display : block;
+	color : #FFFFFF;
+	font-family: Arial, Verdana, sans-serif;
+	font-size : 88px;
+	z-index : 999;
+	
+}
+.translate{
+	display : block;
+	color : #FFFFFF;
+	font-family: Arial, Verdana, sans-serif;
+	font-size : 48px;
+	
+	z-index : 999;
 }

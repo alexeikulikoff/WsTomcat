@@ -1,3 +1,4 @@
+import anime from 'animejs/lib/anime.es.js';
 import '../css/style.css'
 
 const body = document.getElementsByTagName("body")[0]
@@ -42,17 +43,12 @@ const updateGUI = ( msg )=>{
 	
 	foreign.innerHTML = arr[0]
 
-	translate.innerHTML = '[ ' + arr[1] + ' ]'
-	
-//	audio.setAttribute("controls", "controls")
-//	audio.setAttribute("autobuffer", "autobuffer")
-//	audio.setAttribute("autoplay", "autoplay")
+	translate.innerHTML =  arr[1] 
 
 	var elem = document.getElementById("audio")
 	
 	if (typeof(elem) != 'undefined' && elem != null)
 	{
- 	   	console.log('audio exist')
 		body.removeChild( elem )
 	}
 	
@@ -65,12 +61,10 @@ const updateGUI = ( msg )=>{
 	audio.setAttribute("id",  "audio" )
 	
 	audio.addEventListener("canplaythrough", event => {
-  		console.log('play')
+  		
  		 audio.play();
 	});
 	
-	
-	//var snd = Sound("data:audio/wav;base64," + msg.audio );
 }
 
 
@@ -110,6 +104,7 @@ const createUI = () => {
 	
 	const text = document.createElement("div")
 	
+	text.setAttribute("id", "text")
 	text.style.position = "absolute";
 	text.style.transform = "translate(-50%, -50%)";
 	text.style.top = "50%";
