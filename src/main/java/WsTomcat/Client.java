@@ -129,16 +129,18 @@ public class Client
     public byte[] StringToWave(String text){
     //	return StringToWave(text, "wav", "cmu_us_slt_cg");
     //	return StringToWave(text, "wav", "cmu_us_clb_arctic_clunits");
-    //	return StringToWave(text, "wav", "cmu_us_jmk_arctic_clunits");
-    	return StringToWave(text, "wav", "us3_mbrola");
+    	return StringToWave(text, "wav", "cmu_us_jmk_arctic_clunits");
+    //	return StringToWave(text, "wav", "us3_mbrola");
+    	//return StringToWave(text, "wav", "nitech_us_jmk_arctic_hts");
     	
     }
     
     public byte[] StringToWave(String text, String format){
     	//return StringToWave(text, format, "cmu_us_slt_cg");
     	//return StringToWave(text, format, "cmu_us_clb_arctic_clunits");
-    	//return StringToWave(text, "wav", "cmu_us_jmk_arctic_clunits");
-    	return StringToWave(text, "wav", "us3_mbrola");
+    	return StringToWave(text, "wav", "cmu_us_jmk_arctic_clunits");
+    	//return StringToWave(text, "wav", "us3_mbrola");
+    	//return StringToWave(text, "wav", "nitech_us_jmk_arctic_hts");
     }
     
      // Relatively Unnecessary function that can be used to find the audio duration if parsing the header fails or if the sole goal is to find the audio duration (regardless of format)

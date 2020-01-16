@@ -3,8 +3,20 @@ import '../css/style.css'
 
 const body = document.getElementsByTagName("body")[0]
 const foreign = document.createElement("p")
-const translate = document.createElement("p")
+const native = document.createElement("p")
 
+const win = window
+const doc = document
+const docElem = doc.documentElement
+
+const x = win.innerWidth || docElem.clientWidth || body.clientWidth
+const y = win.innerHeight|| docElem.clientHeight|| body.clientHeight
+
+const initModel = {
+	leftRight : {
+		top : '50%' 
+	}
+}
 
 
 let socket ;
@@ -39,11 +51,12 @@ const Sound = (function () {
 const updateGUI = ( msg )=>{
 	
 	if (!msg.phrase.includes(":")) return ;
+	
 	let arr = msg.phrase.split(":")
 	
 	foreign.innerHTML = arr[0]
 
-	translate.innerHTML =  arr[1] 
+	native.innerHTML =  arr[1] 
 
 	var elem = document.getElementById("audio")
 	
@@ -77,14 +90,22 @@ const createUI = () => {
 	stopButton.innerHTML = "Stop"
 	stopButton.classList.add('button')
 	
+	
+	const animateButton = document.createElement("button")
+	animateButton.innerHTML = "Animate"
+	animateButton.classList.add('button')
+	
 	const nav = document.createElement("nav")
 	const ul = document.createElement("ul")
 	const li1 = document.createElement("li")
 	const li2 = document.createElement("li")
+	const li3 = document.createElement("li")
 	li1.appendChild(startButton)
 	li2.appendChild(stopButton)
+	li3.appendChild(animateButton)
 	ul.appendChild( li1 )
 	ul.appendChild( li2 )
+	ul.appendChild( li3 )
 	nav.appendChild( ul )
 	
 	const container = document.createElement("div")
@@ -102,23 +123,21 @@ const createUI = () => {
 	const content  = document.createElement("main")
 	content.classList.add('content')
 	
-	const text = document.createElement("div")
-	
-	text.setAttribute("id", "text")
-	text.style.position = "absolute";
-	text.style.transform = "translate(-50%, -50%)";
-	text.style.top = "50%";
-	text.style.left = "50%";
-	
 	
 	foreign.classList.add('foreign')
-	translate.classList.add('translate')
+	native.classList.add('native')
+	foreign.setAttribute('id', 'foreign')
+	native.setAttribute('id', 'native')
 	
-	text.appendChild( foreign )
-	text.appendChild( translate )
+    if ( process.env.NODE_ENV === 'development'){	
 	
-	content.appendChild( text )
+		foreign.innerHTML = 'retreat'
+		native.innerHTML =  'come back' 
+	}
+	content.appendChild( foreign )
 
+	content.appendChild( native )
+	
 	const footer = document.createElement("div")
 	footer.classList.add('footer')
 	
@@ -147,6 +166,64 @@ const createUI = () => {
 	stopButton.addEventListener ("click", () => {
 		socket.send("stop")
 	})
+	animateButton.addEventListener ("click", () => {
+		
+		const forRect = foreign.getBoundingClientRect();
+		
+		setTimeout(()=>{
+			anime({
+  				targets: '.foreign',
+  				translateX: 0 ,
+				translateY: y/2 
+			})
+		}, 100)
+		
+		setTimeout(()=>{
+			anime({
+  				targets: '.foreign',
+  				translateX: x/2 
+			})
+		}, 200)
+		setTimeout(()=>{
+			anime({
+  				targets: '.foreign',
+  				translateX: x + forRect.width 
+			})
+		}, 2000)
+		
+		setTimeout(()=>{
+			anime({
+  				targets: '.foreign',
+  				translateX: x/2, 
+				translateY: - y/2
+			})	
+		}, 3000)
+		setTimeout(()=>{
+			anime({
+  				targets: '.foreign',
+				translateY: y/2 - 150
+			})	
+		}, 5000)
+	
+		setTimeout(()=>{
+			anime({
+  				targets: '.foreign',
+				translateY: y +  forRect.height 
+			})	
+		}, 7500)
+	
+		
+	})
+	window.addEventListener("load", function(event) {
+		console.log('locad')
+    	const forRect = foreign.getBoundingClientRect();
+		foreign.style.top  = -forRect.height + 'px'
+		foreign.style.left = -forRect.width + 'px'
+		native.style.top='350px'	
+
+  	});
+	
+	
 }
 
 	

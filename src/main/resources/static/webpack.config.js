@@ -4,6 +4,7 @@ const path = require('path');
 
 module.exports = {
   entry: './js/app.js',
+  mode : 'development',
   output: {
   		filename: '[name].bundle.js',
   		path: path.resolve(__dirname, '../templates')

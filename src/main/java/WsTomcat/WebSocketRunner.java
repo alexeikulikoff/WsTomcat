@@ -210,7 +210,7 @@ public class WebSocketRunner implements Runnable{
 	    }    
 	@Override
 	public void run() {
-	  initData("/home/admin2/workspace/WsTomcat/vocabulary.txt.csv");
+	  initData("/home/admin2/tmp/vocabulary.txt.csv");
 	   synchronized ( Locker.class ) {
 		while(true) {
 			
