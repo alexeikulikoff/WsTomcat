@@ -97,15 +97,10 @@ const createUI = () => {
 	
 	const nav = document.createElement("nav")
 	const ul = document.createElement("ul")
-	const li1 = document.createElement("li")
-	const li2 = document.createElement("li")
-	const li3 = document.createElement("li")
-	li1.appendChild(startButton)
-	li2.appendChild(stopButton)
-	li3.appendChild(animateButton)
-	ul.appendChild( li1 )
-	ul.appendChild( li2 )
-	ul.appendChild( li3 )
+		
+	ul.appendChild( document.createElement("li").appendChild(startButton) )
+	ul.appendChild( document.createElement("li").appendChild(stopButton) )
+	ul.appendChild( document.createElement("li").appendChild(animateButton) )
 	nav.appendChild( ul )
 	
 	const container = document.createElement("div")

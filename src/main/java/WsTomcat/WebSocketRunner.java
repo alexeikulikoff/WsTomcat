@@ -112,7 +112,10 @@ public class WebSocketRunner implements Runnable{
 			  return Optional.empty();
 		  }
 		  finally {
-			  client.disconnect();
+			  if(client != null) {
+				  client.disconnect(); 
+			  }
+			 
 		  }
 		  return result;
 	}
